@@ -1,0 +1,12 @@
+{
+  "name": "rock-paper-scisors",
+  "version": "1.0.0",
+  "description": "This project implements a simple online version of the classic game Rock-Paper-Scissors where users can play against an HTTP server. Built with Node.js, this server handles game logic, user interactions, and serves HTML content dynamically.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
