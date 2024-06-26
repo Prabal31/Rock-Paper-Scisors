@@ -60,5 +60,5 @@ Please read [CONTRIBUTING.md](https://yourlinkhere.com/CONTRIBUTING.md) for deta
 
 ## Authors
 
-- **Prabal Manchanda** - [[YourGitHub](https://github.com/yourusername)](https://github.com/Prabal31)
+- **Prabal Manchanda** - (https://github.com/yourusername)](https://github.com/Prabal31)
 
