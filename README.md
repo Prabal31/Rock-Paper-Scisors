@@ -33,11 +33,11 @@ A step-by-step series of examples that tell you how to get a development environ
 
 1. Clone the repository:
    ```bash
-   git clone https://yourrepositorylinkhere.com
+   git clone (https://github.com/Prabal31/Rock-Paper-Scisors.git)
    ```
 2. Navigate to the project directory:
    ```bash
-   cd rock-paper-scissors-nodejs
+   cd rock-paper-scissors
    ```
 3. Install NPM packages:
    ```bash
@@ -60,18 +60,5 @@ Please read [CONTRIBUTING.md](https://yourlinkhere.com/CONTRIBUTING.md) for deta
 
 ## Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Prabal Manchanda** - [[YourGitHub](https://github.com/yourusername)](https://github.com/Prabal31)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://yourlinkhere.com/LICENSE.md) file for details
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
----
-
-This README template gives a comprehensive overview of the project while being succinct enough not to overwhelm new contributors or users. Adjust the content according to the specifics of your project and repository.
