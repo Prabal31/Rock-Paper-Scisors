@@ -8,28 +8,31 @@ const server = http.createServer((request, res) => {
   switch(url.path){
     case '/':
       if(request.method=='GET'){
-        // Retrieve the 'name' query parameter
+
         const name = url.searchParams.get('name');
         console.log(`Received name: ${name}`);
 
-        res.writeHead(200, {'Content-Type': 'text/htm
+        res.writeHead(200, {'Content-Type': 'text/html'});
         
         const readStream = fs.createReadStream('index.html'); 
-        readStream.pipe(res); // Stream the content of index.html to the response
-        return; // Prevent further execution in this callback
+        readStream.pipe(res);
+        return; 
       }
-      else if{
-        if(request.method=='GET'){
+      else if( request.method=='GET'){
           handlePostResponse(request,res);
-          break;
         }
-      }
+        break;
     default:
+      res.writeHead(404, {'Content-Type': 'text/html'}); 
+      fs.createReadStream('404.html').pipe(res); 
     break;
-  }
+    }
 });
 
-// Function for handling POST responses
+server.listen(4001, () => {
+  console.log(server.address().port);
+});
+
 function handlePostResponse(request, response){
   request.setEncoding('utf8');
   
