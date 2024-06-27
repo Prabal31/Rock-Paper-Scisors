@@ -48,15 +48,12 @@ A step-by-step series of examples that tell you how to get a development environ
    node server.js
    ```
 
-Visit `http://localhost:3000` on your browser to start playing against the server.
+Visit `http://localhost:4001/` on your browser to start playing against the server.
 
 ## Usage
 
 Describe how to use the game, with possible command line or browser instructions.
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://yourlinkhere.com/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
