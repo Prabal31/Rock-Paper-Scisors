@@ -1,72 +1,61 @@
 const fs = require('fs');
-
-const http=require('http');
+const http = require('http');
 
 const server = http.createServer((request, res) => {
-  res.end('Server is running!');
-  const url=new URL(request.url,`http://${request.headers.host}`);
-  switch(url.path){
+  const url = new URL(request.url, `http://${request.headers.host}`);
+  switch(url.pathname) {  // Corrected from url.path to url.pathname
     case '/':
-      if(request.method=='GET'){
-
+      if (request.method === 'GET') {
         const name = url.searchParams.get('name');
         console.log(`Received name: ${name}`);
 
         res.writeHead(200, {'Content-Type': 'text/html'});
-        
-        const readStream = fs.createReadStream('index.html'); 
+        const readStream = fs.createReadStream('index.html');
         readStream.pipe(res);
-        return; 
+      } else if (request.method === 'POST') {
+        handlePostResponse(request, res);
+      } else {
+        res.writeHead(404, {'Content-Type': 'text/html'});
+        res.end('Page not found.');
       }
-      else if( request.method=='GET'){
-          handlePostResponse(request,res);
-        }
-        break;
+      break;
     default:
       res.writeHead(404, {'Content-Type': 'text/html'}); 
-      fs.createReadStream('404.html').pipe(res); 
-    break;
-    }
+      fs.createReadStream('404.html').pipe(res);
+      break;
+  }
 });
 
 server.listen(4001, () => {
-  console.log(server.address().port);
+  console.log(`Server is listening on port ${server.address().port}`);
 });
 
-function handlePostResponse(request, response){
+function handlePostResponse(request, response) {
   request.setEncoding('utf8');
   
-  // Receive chunks on 'data' event and concatenate to body variable
   let body = '';
   request.on('data', function (chunk) {
     body += chunk;
   });
   
-  // When done receiving data, select a random choice for server
-  // Compare server choice with player's choice and send an appropriate message back
   request.on('end', function () {
     const choices = ['rock', 'paper', 'scissors'];
-    const randomChoice = choices[Math.floor(Math.random() * 3)];
-
-    const choice = body;
+    const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+    const choice = body.trim();
 
     let message;
-
-    const tied = `Aww, we tied! I also chose ${randomChoice}.`;
-    const victory = `Dang it, you won! I chose ${randomChoice}.`;
-    const defeat = `Ha! You lost. I chose ${randomChoice}.`;
-
     if (choice === randomChoice) {
-      message = tied;
+      message = `Aww, we tied! I also chose ${randomChoice}.`;
     } else if (
-        (choice === 'rock' && randomChoice === 'paper') ||
-        (choice === 'paper' && randomChoice === 'scissors') ||
-        (choice === 'scissors' && randomChoice === 'rock')
+      (choice === 'rock' && randomChoice === 'paper') ||
+      (choice === 'paper' && randomChoice === 'scissors') ||
+      (choice === 'scissors' && randomChoice === 'rock')
     ) {
-      message = defeat;
+      message = `Ha! You lost. I chose ${randomChoice}.`;
     } else {
-      message = victory;
+      message = `Dang it, you won! I chose ${randomChoice}.`;
     }
+
     response.writeHead(200, { 'Content-Type': 'text/plain' });
     response.end(`You selected ${choice}. ${message}`);
   });
