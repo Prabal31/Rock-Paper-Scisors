@@ -18,6 +18,7 @@ const server = http.createServer((request, res) => {
         res.writeHead(404, {'Content-Type': 'text/html'});
         res.end('Page not found.');
       }
+      
       break;
     default:
       res.writeHead(404, {'Content-Type': 'text/html'}); 
